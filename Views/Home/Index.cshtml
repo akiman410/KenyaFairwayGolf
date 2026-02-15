@@ -1,0 +1,19 @@
+﻿@using ApplicationCore.Models
+@model List<GolfClubCardModel>
+@{
+    ViewData["Title"] = "Home Page";
+
+}
+
+@foreach (var item in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <a asp-controller="Home" asp-action="Privacy" asp-route-id ="">
+            <img src="@item.PosterUrl" class="img-fluid rounded-start" alt="@item.PosterUrl">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">@item.GolfItemName</h5>
+            <p class="card-text">@item.Description</p>
+        </div>
+    </div>
+}
