@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using ApplicationCore.Contracts.Services;
 using ApplicationCore.Models;
 using Infrastructure.Services;
 using KenyaFairwayGolf.Models;
@@ -8,18 +9,24 @@ namespace KenyaFairwayGolf.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IGolfClubService _golfClubService;
+        public HomeController(GolfClubService golfClubService)
+        {
+            _golfClubService = golfClubService;
+        }
         public IActionResult Index()
         { 
-            var golfClubCardService = new GolfClubService();
 
-            var golfClubCards = golfClubCardService.GetTop30GolfClubs();
+            var golfClubCards = _golfClubService.GetTop30GolfClubs();
 
             return View(golfClubCards);
         }
 
-        public IActionResult GolfClubDetails()
-        {
-            return View();
+        public IActionResult GolfClubDetails(int id)    
+        {            
+                ViewBag.GolfClubId = id;
+
+                return View();
         }
 
         [HttpGet]
