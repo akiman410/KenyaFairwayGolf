@@ -10,7 +10,7 @@ namespace KenyaFairwayGolf.Controllers
     public class HomeController : Controller
     {
         private readonly IGolfClubService _golfClubService;
-        public HomeController(GolfClubService golfClubService)
+        public HomeController(IGolfClubService golfClubService)
         {
             _golfClubService = golfClubService;
         }
